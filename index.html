@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teo's BD</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="invitation invitation-title"></div>
+    </header>
+    <main>
+      <section>
+        <div class="invitation invitation-text">
+          <div class="lined-title">
+            <span class="line-left"></span>
+            <h1>Birthday party</h1>
+            <span class="line-right"></span>
+          </div>
+          <p>
+            С каждым годом я всё яснее понимаю: не важен масштаб торжества,
+            важен круг людей. <br />Вы — тот самый круг. Моя опора, моё тепло,
+            моя компания «без масок». <br />В свой день рождения я не устраиваю
+            шоу. <br />Я просто приглашаю вас побыть рядом. <br />Поговорить.
+            Посмеяться. Помолчать. Поесть торта. Сделать миллион фото и ни
+            одного лишнего.
+          </p>
+        </div>
+      </section>
+      <section>
+        <div class="date">
+          <img src="/июнь календарь 2026.jpg" alt="" />
+        </div>
+      </section>
+      <section class="time">
+        <h2>Тайминг</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">16:30</div>
+            <div class="event">Встречаемся</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">17:00</div>
+            <div class="event">Поднимаем бокалы</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">18:30</div>
+            <div class="event">Ловим мгновения</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">19:00</div>
+            <div class="event">Растворяемся в вечере</div>
+          </div>
+        </div>
+      </section>
+      <section class="location">
+        <h2>Локация</h2>
+        <div class="location-content">
+          <p>
+            Лофт «Симпл»<br />Подъезд № 16, дверь № 1<br />ул. Бауманская, д.
+            20с7
+          </p>
+          <div class="location-map-container">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?um=constructor%3A61d6483eb4395ab9e5311754cc59a105bb8b69fdc9b59bccbc721866b1b45d19&amp;source=constructor"
+              width="100%"
+              height="300"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+      <section class="gift">
+        <h2>Подарки</h2>
+        <div class="gift-content">
+          <p>
+            Мне важно не то, что вы дарите, а то, что вы рядом.<br />
+            Если вам хочется порадовать меня — я люблю вещи, которые остаются со
+            мной и напоминают о вас: нежные украшения, что-то для упрощения
+            жизни или просто письмо.<br />
+            Если честно, я люблю всё, что любят многие женщины: красоту, заботу,
+            маленькие радости.<br />
+            А если ещё не решили — спросите. Я честно отвечу, чему буду рада 🌸
+          </p>
+        </div>
+      </section>
+      <section class="countdown-subtle">
+        <h2>До встречи осталось</h2>
+        <div class="countdown-text" id="countdown-text">
+          <!-- подставляем фразу с JS -->
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-content">
+        <p>Жду вас с открытым сердцем,</p>
+        <p class="footer-signature">Ваша Teo</p>
+      </div>
+    </footer>
+    <div class="footer-image"></div>
+    <script>
+      const eventDate = new Date(2026, 5, 24, 16, 30);
+
+      function decline(n, one, two, five) {
+        n = Math.abs(n) % 100;
+        if (n >= 5 && n <= 20) return five;
+        n %= 10;
+        if (n === 1) return one;
+        if (n >= 2 && n <= 4) return two;
+        return five;
+      }
+
+      function updateCountdownText() {
+        const diff = eventDate - new Date();
+        if (diff <= 0) {
+          document.getElementById("countdown-text").innerHTML =
+            "Уже встречаемся ✨";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+        let text = "";
+        if (days > 0) text += `${days} ${decline(days, "день", "дня", "дней")}`;
+        if (hours > 0)
+          text += ` ${hours} ${decline(hours, "час", "часа", "часов")}`;
+        if (minutes > 0)
+          text += ` ${minutes} ${decline(minutes, "минута", "минуты", "минут")}`;
+
+        if (days === 0 && hours === 0 && minutes > 0) text = `меньше часа`;
+
+        document.getElementById("countdown-text").innerHTML =
+          text || "совсем скоро 🌸";
+      }
+
+      updateCountdownText();
+      setInterval(updateCountdownText, 60000); // обновление раз в минуту
+    </script>
+  </body>
+</html>
