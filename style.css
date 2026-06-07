@@ -58,7 +58,7 @@ body {
 }
 
 .invitation-title {
-  background-image: url(./flowers.jpg);
+  background-image: url(flowers.jpg);
   background-size: cover;
   /* Плавное затухание нижнего края */
   mask-image: linear-gradient(
@@ -336,7 +336,7 @@ body {
 }
 
 .footer-image {
-  background-image: url(./flowers.jpg);
+  background-image: url(flowers.jpg);
   background-size: cover;
   background-position: top;
   width: 100%;
